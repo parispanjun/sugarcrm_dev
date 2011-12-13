@@ -74,10 +74,10 @@ class SubpanelQuickCreate{
 		$this->ev->setup($module, $bean, $source);
 		unset($bean);
 
-
-	    $this->ev->defs['templateMeta']['form']['headerTpl'] = 'include/EditView/header.tpl';
-		$this->ev->defs['templateMeta']['form']['footerTpl'] = 'include/EditView/footer.tpl';
-		$this->ev->defs['templateMeta']['form']['buttons'] = array('SUBPANELSAVE', 'SUBPANELCANCEL', 'SUBPANELFULLFORM');
+	// Fixed By PanJun, check empty before set defaults, or the settings from viewdefs above will be overridden.
+	if (empty($this->ev->defs['templateMeta']['form']['headerTpl'])) $this->ev->defs['templateMeta']['form']['headerTpl'] = 'include/EditView/header.tpl';
+	if (empty($this->ev->defs['templateMeta']['form']['footerTpl'])) $this->ev->defs['templateMeta']['form']['footerTpl'] = 'include/EditView/footer.tpl';
+	if (empty($this->ev->defs['templateMeta']['form']['buttons'])) $this->ev->defs['templateMeta']['form']['buttons'] = array('SUBPANELSAVE', 'SUBPANELCANCEL', 'SUBPANELFULLFORM');
 		
         //Load the parent view class if it exists.  Check for custom file first
         loadParentView('edit');
